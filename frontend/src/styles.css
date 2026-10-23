@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-slate-800 antialiased font-sans;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  table {
+    @apply text-slate-700;
+  }
+
+  th {
+    @apply text-[11px] font-semibold tracking-wider text-slate-500 uppercase;
+  }
+}
+
+/* Institutional tabular numeric display for financial precision */
+.num-tabular, .tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* Subtle hairline borders for clean financial sheets */
+.border-hairline {
+  border-width: 1px;
+  border-color: #E2E8F0;
+}
+
+/* Institutional status badges */
+.badge-status {
+  @apply inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[11px] font-medium tracking-tight border;
+}
+
+.badge-active {
+  @apply bg-emerald-50 text-emerald-800 border-emerald-200/80;
+}
+
+.badge-pending {
+  @apply bg-amber-50 text-amber-800 border-amber-200/80;
+}
+
+.badge-arrears {
+  @apply bg-rose-50 text-rose-800 border-rose-200/80;
+}
+
+.badge-neutral {
+  @apply bg-slate-100 text-slate-700 border-slate-200;
+}
+
+/* Refined custom scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* ========================================================
+   ANIMATION & TRANSITION SKILLS
+   ======================================================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dropdownScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-dropdown {
+  animation: dropdownScale 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top right;
+}
+
+.animate-slide-in {
+  animation: slideInLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Sidenav item active indicator transition */
+.nav-indicator-active {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Responsive table styling with smooth horizontal swipe */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ========================================================
+   RESPONSIVE MEDIA QUERIES (Mobile, Tablet, Desktop)
+   ======================================================== */
+@media screen and (max-width: 640px) {
+  /* Mobile compact headers & tables */
+  .mobile-table th, .mobile-table td {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+  
+  .mobile-hide {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet medium layouts */
+  .tablet-compact {
+    gap: 0.75rem;
+  }
+}
+
+/* ========================================================
+   PRINT STYLESHEET (RFQ Official Audit & Report Printing)
+   ======================================================== */
+@media print {
+  aside, header, button, .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+  }
+
+  th, td {
+    border: 1px solid #d1d5db !important;
+    padding: 6px 8px !important;
+  }
+}

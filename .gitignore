@@ -1,0 +1,49 @@
+# Secrets & Environment Files
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Java & Maven Artifacts
+target/
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+.mvn/wrapper/maven-wrapper.jar
+
+# Local Database Files
+backend/data/
+data/
+*.db
+*.mv.db
+*.trace.db
+
+# Frontend Node & Build Artifacts
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+node_modules/
+dist/
+.npm
+npm-debug.log*
+
+# IDE & Editor Files
+.idea/
+*.iml
+.vscode/
+*.suo
+*.user
+*.useroscan
+*.sln.docstates
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
