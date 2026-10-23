@@ -16,10 +16,10 @@ import { BenevolenceRecord } from '../../core/models/welfare.model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6 font-sans">
+    <div class="space-y-6 font-sans animate-page">
       
       <!-- Member Official ID Card Header -->
-      <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover-lift transition-all duration-200">
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Self-Service Docket</span>
@@ -43,7 +43,7 @@ import { BenevolenceRecord } from '../../core/models/welfare.model';
 
       <!-- Financial Holdings Strip -->
       <div class="bg-white border border-slate-200 rounded-lg shadow-2xs divide-y sm:divide-y-0 sm:divide-x divide-slate-200 grid grid-cols-1 sm:grid-cols-3">
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Accumulated Shares</span>
             <span class="text-[10px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 font-medium">Borrowing Base</span>
@@ -54,7 +54,7 @@ import { BenevolenceRecord } from '../../core/models/welfare.model';
           <p class="text-[11px] text-slate-500 mt-1">Multiplies up to 3x loan ceiling eligibility.</p>
         </div>
 
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Benevolence Reserve</span>
             <span class="text-[10px] font-mono text-blue-800 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200 font-medium">Contributed</span>
@@ -65,7 +65,7 @@ import { BenevolenceRecord } from '../../core/models/welfare.model';
           <p class="text-[11px] text-slate-500 mt-1">Non-withdrawable mutual welfare entitlement pool.</p>
         </div>
 
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Active Loan Exposure</span>
             <span class="text-[10px] font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 font-medium">{{ loans.length }} Facility</span>
@@ -292,45 +292,52 @@ export class MemberPortalComponent implements OnInit {
   }
 
   loadMemberData() {
-    // Member data isolation: use backend endpoints that derive identity from JWT
+    // Member data isolation: strictly derive identity from JWT and authenticated session
     this.memberService.getMyProfile().subscribe({
       next: res => { this.member = res.data; },
       error: () => {
-        // Fallback to payroll lookup if /me not yet populated
-        const payroll = this.currentUser?.payrollNo || 'NARL-1001';
-        this.memberService.getMemberByPayroll(payroll).subscribe(res => {
-          this.member = res.data;
-        });
+        const payroll = this.currentUser?.payrollNo;
+        if (payroll) {
+          this.memberService.getMemberByPayroll(payroll).subscribe(res => {
+            this.member = res.data;
+          });
+        }
       }
     });
 
     this.contributionService.getMyBalance().subscribe({
       next: res => { this.balance = res.data; },
       error: () => {
-        const payroll = this.currentUser?.payrollNo || 'NARL-1001';
-        this.contributionService.getMemberBalance(payroll).subscribe(res => {
-          this.balance = res.data;
-        });
+        const payroll = this.currentUser?.payrollNo;
+        if (payroll) {
+          this.contributionService.getMemberBalance(payroll).subscribe(res => {
+            this.balance = res.data;
+          });
+        }
       }
     });
 
     this.loanService.getMyLoans().subscribe({
       next: res => { this.loans = res.data || []; },
       error: () => {
-        const payroll = this.currentUser?.payrollNo || 'NARL-1001';
-        this.loanService.getMemberLoans(payroll).subscribe(res => {
-          this.loans = res.data || [];
-        });
+        const payroll = this.currentUser?.payrollNo;
+        if (payroll) {
+          this.loanService.getMemberLoans(payroll).subscribe(res => {
+            this.loans = res.data || [];
+          });
+        }
       }
     });
 
     this.welfareService.getMyRecords().subscribe({
       next: res => { this.welfareRecords = res.data || []; },
       error: () => {
-        const payroll = this.currentUser?.payrollNo || 'NARL-1001';
-        this.welfareService.getMemberRecords(payroll).subscribe(res => {
-          this.welfareRecords = res.data || [];
-        });
+        const payroll = this.currentUser?.payrollNo;
+        if (payroll) {
+          this.welfareService.getMemberRecords(payroll).subscribe(res => {
+            this.welfareRecords = res.data || [];
+          });
+        }
       }
     });
 
@@ -341,10 +348,12 @@ export class MemberPortalComponent implements OnInit {
     this.contributionService.getMyStatement().subscribe({
       next: res => { this.statement = res.data; },
       error: () => {
-        const payroll = this.currentUser?.payrollNo || 'NARL-1001';
-        this.contributionService.getMemberStatement(payroll).subscribe(res => {
-          this.statement = res.data;
-        });
+        const payroll = this.currentUser?.payrollNo;
+        if (payroll) {
+          this.contributionService.getMemberStatement(payroll).subscribe(res => {
+            this.statement = res.data;
+          });
+        }
       }
     });
   }

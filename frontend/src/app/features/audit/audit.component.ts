@@ -7,7 +7,7 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
@@ -20,7 +20,7 @@ import { AuthService } from '../../core/services/auth.service';
           <h1 class="text-xl font-bold text-slate-900 tracking-tight">Compliance Audit Trail &amp; Ledger Mutations</h1>
           <p class="text-xs text-slate-600 mt-0.5">Chronological record of administrative operations, financial postings, user logins, and database integrity events.</p>
         </div>
-        <button (click)="loadLogs()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-mono text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+        <button (click)="loadLogs()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-mono text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
           <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
           <span>Refresh Ledger</span>
         </button>

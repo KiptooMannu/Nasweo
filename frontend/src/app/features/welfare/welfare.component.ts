@@ -9,7 +9,7 @@ import { BenevolenceRecord, WelfareExpenditureSummary } from '../../core/models/
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4">
         <div>
@@ -23,7 +23,7 @@ import { BenevolenceRecord, WelfareExpenditureSummary } from '../../core/models/
           <h1 class="text-xl font-bold text-slate-900 tracking-tight">Benevolence Assistance &amp; Occasion Grants</h1>
           <p class="text-xs text-slate-600 mt-0.5">Statutory assistance for member illness, bereavement, retirement gifts, and constitutional welfare grants.</p>
         </div>
-        <button (click)="openAddModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition">
+        <button (click)="openAddModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
           <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
           <span>Record Relief / Grant</span>
         </button>
@@ -31,7 +31,7 @@ import { BenevolenceRecord, WelfareExpenditureSummary } from '../../core/models/
 
       <!-- Expenditures Summary Strip -->
       <div class="bg-white border border-slate-200 rounded-lg shadow-2xs divide-y sm:divide-y-0 sm:divide-x divide-slate-200 grid grid-cols-1 sm:grid-cols-3">
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Total Disbursed All Time</span>
             <span class="text-[10px] font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200 font-medium">{{ summary?.totalClaimsCount || 0 }} Cases</span>

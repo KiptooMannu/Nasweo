@@ -9,7 +9,7 @@ import { Loan, LoanProduct, AmortizationSchedule, TopUpCalculationResult } from 
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Header -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4">
         <div>
@@ -24,15 +24,15 @@ import { Loan, LoanProduct, AmortizationSchedule, TopUpCalculationResult } from 
           <p class="text-xs text-slate-600 mt-0.5">Reducing-balance schedules, flat rate options, top-ups with settlement deduction calculation, and recovery tracking.</p>
         </div>
         <div class="flex items-center gap-2">
-          <button (click)="openCalculatorModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openCalculatorModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
             <span>Amortization Simulator</span>
           </button>
-          <button (click)="openTopUpModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-800 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openTopUpModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-800 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
             <span>Process Loan Top-Up</span>
           </button>
-          <button (click)="openApplyModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openApplyModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <span>Issue New Facility</span>
           </button>
@@ -41,7 +41,7 @@ import { Loan, LoanProduct, AmortizationSchedule, TopUpCalculationResult } from 
 
       <!-- Active Loan Products Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div *ngFor="let p of products" class="p-4 rounded-lg bg-white border border-slate-200 shadow-2xs">
+        <div *ngFor="let p of products" class="p-4 rounded-lg bg-white border border-slate-200 shadow-2xs hover-lift transition-all duration-200">
           <div class="flex items-center justify-between mb-2">
             <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">{{ p.code }}</span>
             <span class="text-xs font-bold text-slate-900 font-mono">{{ p.annualInterestRate }}% p.a.</span>

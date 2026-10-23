@@ -8,7 +8,7 @@ import { RoleMetadata } from '../../core/models/user.model';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="space-y-6 font-sans">
+    <div class="space-y-6 font-sans animate-page">
       
       <!-- Administrative Header -->
       <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -34,7 +34,7 @@ import { RoleMetadata } from '../../core/models/user.model';
 
       <!-- Roles Cards Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <div *ngFor="let r of roles" class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col justify-between hover:border-slate-300 transition">
+        <div *ngFor="let r of roles" class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col justify-between hover-lift transition-all duration-200">
           <div>
             <div class="flex items-center justify-between mb-2">
               <span [ngClass]="getRoleBadgeClass(r.code)" class="px-2 py-0.5 rounded text-[10px] font-mono font-bold border">

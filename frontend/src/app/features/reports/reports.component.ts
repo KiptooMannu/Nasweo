@@ -11,7 +11,7 @@ import { WelfareService } from '../../core/services/welfare.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Institutional Report Masthead -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4 no-print">
         <div>
@@ -27,11 +27,11 @@ import { WelfareService } from '../../core/services/welfare.service';
         </div>
 
         <div class="flex items-center gap-2">
-          <button (click)="exportToCSV()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-mono text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="exportToCSV()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-mono text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
             <span>Export CSV</span>
           </button>
-          <button (click)="printReport()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-mono text-xs shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="printReport()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-mono text-xs shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
             <span>Print Official Report</span>
           </button>

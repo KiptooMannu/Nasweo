@@ -121,7 +121,8 @@ import { AuthService } from '../../../core/services/auth.service';
             <div class="py-3.5 space-y-2.5 border-b border-slate-100">
               <div class="flex justify-between items-center text-xs">
                 <span class="text-slate-500">Staff Payroll Identifier</span>
-                <span class="font-mono font-bold text-slate-900">{{ currentUser?.payrollNo || 'NARL-1001' }}</span>
+                <span *ngIf="currentUser?.payrollNo" class="font-mono font-bold text-slate-900">{{ currentUser?.payrollNo }}</span>
+                <span *ngIf="!currentUser?.payrollNo" class="font-mono text-slate-400 italic">Not Assigned (Staff Officer)</span>
               </div>
               <div class="flex justify-between items-center text-xs">
                 <span class="text-slate-500">Institutional Station</span>
@@ -147,32 +148,6 @@ import { AuthService } from '../../../core/services/auth.service';
               </div>
             </div>
 
-            <!-- Fast RFQ Role Switcher (Instant Evaluation Testing) -->
-            <div class="py-3 border-b border-slate-100">
-              <p class="text-[10px] font-mono uppercase text-slate-500 font-bold mb-2">Switch RFQ Evaluation Role</p>
-              <div class="grid grid-cols-2 gap-1.5 text-[11px]">
-                <button (click)="switchRole('admin', 'admin123')" class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition font-mono">
-                  <span class="font-bold text-slate-900 block">Admin</span>
-                  <span class="text-[9px] text-slate-500">Full System</span>
-                </button>
-                <button (click)="switchRole('treasurer', 'treasurer123')" class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition font-mono">
-                  <span class="font-bold text-slate-900 block">Treasurer</span>
-                  <span class="text-[9px] text-slate-500">Checkoff/Finance</span>
-                </button>
-                <button (click)="switchRole('welfare_officer', 'welfare123')" class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition font-mono">
-                  <span class="font-bold text-slate-900 block">Welfare</span>
-                  <span class="text-[9px] text-slate-500">Benevolence/Gifts</span>
-                </button>
-                <button (click)="switchRole('auditor', 'auditor123')" class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-left transition font-mono">
-                  <span class="font-bold text-slate-900 block">Auditor</span>
-                  <span class="text-[9px] text-slate-500">Audit Logs Only</span>
-                </button>
-                <button (click)="switchRole('member001', 'member123')" class="col-span-2 p-1.5 rounded bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-left transition font-mono text-emerald-900">
-                  <span class="font-bold block">Ordinary Member (Dr. Patrick Mwangi)</span>
-                  <span class="text-[9px] text-emerald-700">Self-Service Portal • 65y Scientist</span>
-                </button>
-              </div>
-            </div>
 
             <!-- Quick Account Actions -->
             <div class="py-2.5 border-b border-slate-100 flex items-center justify-between">
@@ -434,19 +409,6 @@ export class LayoutComponent {
     if (url.includes('my-account')) return 'Member Self-Service Statement';
     if (url.includes('audit')) return 'Compliance Audit Trail';
     return 'Data Management';
-  }
-
-  switchRole(username: string, password: string) {
-    this.showProfileDropdown = false;
-    this.authService.login({ username, password }).subscribe({
-      next: () => {
-        if (this.authService.isOrdinaryMember()) {
-          this.router.navigate(['/my-account']);
-        } else {
-          this.router.navigate(['/dashboard']);
-        }
-      }
-    });
   }
 
   logout() {

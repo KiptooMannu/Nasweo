@@ -9,7 +9,7 @@ import { User, UserUpdateRequest } from '../../core/models/user.model';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6 font-sans">
+    <div class="space-y-6 font-sans animate-page">
       
       <!-- Administrative Header -->
       <div class="bg-white border border-slate-200 rounded-lg p-5 shadow-2xs flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -29,7 +29,7 @@ import { User, UserUpdateRequest } from '../../core/models/user.model';
 
         <div class="flex items-center gap-2.5">
           <button (click)="openCreateModal()" 
-                  class="px-3.5 py-2 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white text-xs font-medium shadow-xs transition flex items-center gap-2">
+                  class="px-3.5 py-2 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white text-xs font-medium shadow-xs transition flex items-center gap-2 btn-press hover-lift">
             <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
             </svg>
@@ -40,25 +40,25 @@ import { User, UserUpdateRequest } from '../../core/models/user.model';
 
       <!-- KPI Summary Ledger Strip -->
       <div class="bg-white border border-slate-200 rounded-lg shadow-2xs divide-y sm:divide-y-0 sm:divide-x divide-slate-200 grid grid-cols-2 sm:grid-cols-4">
-        <div class="p-4">
+        <div class="p-4 hover-lift transition-all duration-200">
           <p class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Total Accounts</p>
           <p class="text-2xl font-bold text-slate-900 font-mono mt-1">{{ users.length }}</p>
           <p class="text-[10px] text-slate-400 mt-0.5">System registered identities</p>
         </div>
 
-        <div class="p-4">
+        <div class="p-4 hover-lift transition-all duration-200">
           <p class="text-[10px] font-mono uppercase tracking-wider text-emerald-800 font-semibold">Active Accounts</p>
           <p class="text-2xl font-bold text-emerald-900 font-mono mt-1">{{ getActiveCount() }}</p>
           <p class="text-[10px] text-slate-400 mt-0.5">Authorized for portal login</p>
         </div>
 
-        <div class="p-4">
+        <div class="p-4 hover-lift transition-all duration-200">
           <p class="text-[10px] font-mono uppercase tracking-wider text-amber-800 font-semibold">Password Change Required</p>
           <p class="text-2xl font-bold text-amber-900 font-mono mt-1">{{ getPendingPasswordChangeCount() }}</p>
           <p class="text-[10px] text-slate-400 mt-0.5">Pending first-login update</p>
         </div>
 
-        <div class="p-4">
+        <div class="p-4 hover-lift transition-all duration-200">
           <p class="text-[10px] font-mono uppercase tracking-wider text-rose-800 font-semibold">Deactivated</p>
           <p class="text-2xl font-bold text-rose-900 font-mono mt-1">{{ getDeactivatedCount() }}</p>
           <p class="text-[10px] text-slate-400 mt-0.5">Access suspended</p>

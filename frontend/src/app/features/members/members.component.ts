@@ -9,7 +9,7 @@ import { Member, NextOfKin, MemberImportResult } from '../../core/models/member.
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Header Controls -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4">
         <div>
@@ -24,11 +24,11 @@ import { Member, NextOfKin, MemberImportResult } from '../../core/models/member.
           <p class="text-xs text-slate-600 mt-0.5">Manage welfare organization membership, automated retirement dates (Scientists at 65, Non-scientists at 60), and next of kin allocations.</p>
         </div>
         <div class="flex items-center gap-2">
-          <button (click)="openImportModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openImportModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
             <span>Import Member List</span>
           </button>
-          <button (click)="openAddModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openAddModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <span>Register New Staff</span>
           </button>
@@ -107,8 +107,8 @@ import { Member, NextOfKin, MemberImportResult } from '../../core/models/member.
       </div>
 
       <!-- Add / Edit Member Modal -->
-      <div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6">
+      <div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 animate-scale-in">
           <div class="flex items-center justify-between pb-4 border-b border-slate-100">
             <h3 class="text-base font-bold text-slate-900">{{ editMode ? 'Edit Member Biodata' : 'Register New NASWEO Member' }}</h3>
             <button (click)="closeModal()" class="text-slate-400 hover:text-slate-600">✕</button>
@@ -176,8 +176,8 @@ import { Member, NextOfKin, MemberImportResult } from '../../core/models/member.
       </div>
 
       <!-- Excel Bulk Import Modal -->
-      <div *ngIf="showImportModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm">
-        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full p-6">
+      <div *ngIf="showImportModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-lg w-full p-6 animate-scale-in">
           <div class="flex items-center justify-between pb-3 border-b border-slate-100">
             <h3 class="text-base font-bold text-slate-900">Import Members from Excel</h3>
             <button (click)="closeImportModal()" class="text-slate-400 hover:text-slate-600">✕</button>

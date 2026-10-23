@@ -9,7 +9,7 @@ import { Contribution, MemberStatement, CheckoffImportResult } from '../../core/
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Header Controls -->
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 gap-4">
         <div>
@@ -24,15 +24,15 @@ import { Contribution, MemberStatement, CheckoffImportResult } from '../../core/
           <p class="text-xs text-slate-600 mt-0.5">Track monthly share capital, benevolence funds, Excel bulk import, and direct bank/M-Pesa reconciliations.</p>
         </div>
         <div class="flex items-center gap-2">
-          <button (click)="openStatementModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openStatementModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
             <span>Member Statement</span>
           </button>
-          <button (click)="openCheckoffModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openCheckoffModal()" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
             <span>Import Checkoff Excel</span>
           </button>
-          <button (click)="openManualModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-800 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition">
+          <button (click)="openManualModal()" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-800 font-medium text-xs border border-slate-300 shadow-2xs flex items-center gap-1.5 transition btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <span>Record Direct Receipt</span>
           </button>
@@ -41,7 +41,7 @@ import { Contribution, MemberStatement, CheckoffImportResult } from '../../core/
 
       <!-- Financial Pool Summary Widgets -->
       <div class="bg-white border border-slate-200 rounded-lg shadow-2xs divide-y sm:divide-y-0 sm:divide-x divide-slate-200 grid grid-cols-1 sm:grid-cols-3">
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Total Shares Pool</span>
             <span class="text-[10px] font-mono text-emerald-800 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Equity</span>
@@ -51,7 +51,7 @@ import { Contribution, MemberStatement, CheckoffImportResult } from '../../core/
           </div>
           <p class="text-[11px] text-slate-500 mt-1">Total member withdrawable capital deposits.</p>
         </div>
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Total Benevolence Pool</span>
             <span class="text-[10px] font-mono text-blue-800 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">Reserve</span>

@@ -11,14 +11,14 @@ import { WelfareService } from '../../core/services/welfare.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="space-y-6">
+    <div class="space-y-6 animate-page">
       <!-- Institutional Masthead & Primary Actions -->
       <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-slate-200 gap-4">
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Executive Governance</span>
             <span class="text-slate-300">•</span>
-            <span class="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/80">
+            <span class="text-[11px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/80 animate-pulse-subtle">
               Live RFQ Demonstration Environment
             </span>
           </div>
@@ -32,11 +32,11 @@ import { WelfareService } from '../../core/services/welfare.service';
 
         <!-- Quick Institutional Action Buttons -->
         <div class="flex items-center gap-2">
-          <a routerLink="/contributions" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs transition inline-flex items-center gap-1.5">
+          <a routerLink="/contributions" class="px-3 py-1.5 rounded bg-white hover:bg-slate-50 text-slate-700 font-medium text-xs border border-slate-300 shadow-2xs transition inline-flex items-center gap-1.5 btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
             <span>Import Checkoff Excel</span>
           </a>
-          <a routerLink="/loans" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs transition inline-flex items-center gap-1.5">
+          <a routerLink="/loans" class="px-3 py-1.5 rounded bg-[#0F291E] hover:bg-[#1B4332] text-white font-medium text-xs shadow-2xs transition inline-flex items-center gap-1.5 btn-press hover-lift">
             <svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
             <span>Issue Loan Schedule</span>
           </a>
@@ -47,7 +47,7 @@ import { WelfareService } from '../../core/services/welfare.service';
       <div class="bg-white border border-slate-200 rounded-lg shadow-2xs divide-y lg:divide-y-0 lg:divide-x divide-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         
         <!-- Ledger Metric 1: Member Shares Capital -->
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Member Shares Pool</span>
             <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">Equity</span>
@@ -63,7 +63,7 @@ import { WelfareService } from '../../core/services/welfare.service';
         </div>
 
         <!-- Ledger Metric 2: Benevolence Pool -->
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Benevolence Reserve</span>
             <span class="text-[10px] font-mono text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200">Reserve</span>
@@ -79,7 +79,7 @@ import { WelfareService } from '../../core/services/welfare.service';
         </div>
 
         <!-- Ledger Metric 3: Outstanding Loan Portfolio -->
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Active Loan Portfolio</span>
             <span class="text-[10px] font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">Asset</span>
@@ -95,7 +95,7 @@ import { WelfareService } from '../../core/services/welfare.service';
         </div>
 
         <!-- Ledger Metric 4: Organization Membership -->
-        <div class="p-5">
+        <div class="p-5 hover-lift transition-all duration-200">
           <div class="flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Staff Membership</span>
             <span class="text-[10px] font-mono text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">~300 Cap</span>
