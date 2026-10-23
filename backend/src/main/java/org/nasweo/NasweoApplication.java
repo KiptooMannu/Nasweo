@@ -26,6 +26,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -52,54 +53,99 @@ public class NasweoApplication {
         return args -> {
             log.info("Checking and initializing NASWEO Welfare Organization seed data...");
 
-            // 1. Seed Users
-            if (userRepo.count() == 0) {
+            // 1. Guarantee System Administrator account is seeded on server startup
+            if (userRepo.findByUsername("admin").isEmpty()) {
                 userRepo.save(User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin123"))
                         .fullName("System Administrator")
                         .email("admin@nasweo.or.ke")
-                        .roles(Set.of(Role.ROLE_ADMIN))
+                        .phoneNumber("+254711000001")
+                        .payrollNo("NARL-ADMIN")
+                        .roles(new HashSet<>(Set.of(Role.ROLE_ADMIN)))
+                        .mustChangePassword(false)
                         .enabled(true)
                         .build());
+                log.info("System Administrator account successfully seeded on startup: username='admin'");
+            } else {
+                User admin = userRepo.findByUsername("admin").get();
+                boolean modified = false;
+                if (admin.getRoles() == null || !admin.getRoles().contains(Role.ROLE_ADMIN)) {
+                    if (admin.getRoles() == null) {
+                        admin.setRoles(new HashSet<>());
+                    }
+                    admin.getRoles().add(Role.ROLE_ADMIN);
+                    modified = true;
+                }
+                if (!admin.isEnabled()) {
+                    admin.setEnabled(true);
+                    modified = true;
+                }
+                if (modified) {
+                    userRepo.save(admin);
+                    log.info("System Administrator account privileges verified and active.");
+                }
+            }
 
+            // Seed other default institutional role accounts if not present
+            if (userRepo.findByUsername("treasurer").isEmpty()) {
                 userRepo.save(User.builder()
                         .username("treasurer")
                         .password(passwordEncoder.encode("treasurer123"))
                         .fullName("Welfare Treasurer")
                         .email("treasurer@nasweo.or.ke")
-                        .roles(Set.of(Role.ROLE_TREASURER))
+                        .phoneNumber("+254711000002")
+                        .payrollNo("NARL-1002")
+                        .roles(new HashSet<>(Set.of(Role.ROLE_TREASURER)))
+                        .mustChangePassword(false)
                         .enabled(true)
                         .build());
+                log.info("Default treasurer account verified.");
+            }
 
+            if (userRepo.findByUsername("welfare_officer").isEmpty()) {
                 userRepo.save(User.builder()
                         .username("welfare_officer")
                         .password(passwordEncoder.encode("welfare123"))
                         .fullName("Welfare Manager")
                         .email("welfare@nasweo.or.ke")
-                        .roles(Set.of(Role.ROLE_WELFARE_OFFICER))
+                        .phoneNumber("+254711000003")
+                        .payrollNo("NARL-1004")
+                        .roles(new HashSet<>(Set.of(Role.ROLE_WELFARE_OFFICER)))
+                        .mustChangePassword(false)
                         .enabled(true)
                         .build());
+                log.info("Default welfare officer account verified.");
+            }
 
+            if (userRepo.findByUsername("auditor").isEmpty()) {
                 userRepo.save(User.builder()
                         .username("auditor")
                         .password(passwordEncoder.encode("auditor123"))
                         .fullName("Internal Auditor")
                         .email("auditor@nasweo.or.ke")
-                        .roles(Set.of(Role.ROLE_AUDITOR))
+                        .phoneNumber("+254711000004")
+                        .payrollNo("NARL-1005")
+                        .roles(new HashSet<>(Set.of(Role.ROLE_AUDITOR)))
+                        .mustChangePassword(false)
                         .enabled(true)
                         .build());
+                log.info("Default auditor account verified.");
+            }
 
+            if (userRepo.findByUsername("member001").isEmpty()) {
                 userRepo.save(User.builder()
                         .username("member001")
                         .password(passwordEncoder.encode("member123"))
                         .fullName("Dr. Patrick Mwangi")
                         .email("pmwangi@kalro.org")
+                        .phoneNumber("+254711000101")
                         .payrollNo("NARL-1001")
-                        .roles(Set.of(Role.ROLE_MEMBER))
+                        .roles(new HashSet<>(Set.of(Role.ROLE_MEMBER)))
+                        .mustChangePassword(false)
                         .enabled(true)
                         .build());
-                log.info("Default security accounts created (admin, treasurer, welfare_officer, auditor, member001).");
+                log.info("Default member account verified (member001 / NARL-1001).");
             }
 
             // 2. Seed Members (Scientist at 65, Non-Scientist at 60)
